@@ -1,0 +1,50 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class CC : MonoBehavious {
+
+  public float speed;
+  private float moveInput; //always set moveInput to 4.5 in the engine
+
+  private Rigidbody2d rb;
+  
+    private bool facingRight = true;
+    
+    
+    private bool isGrounded;
+    public Transform groundCheck;
+    public float checkRadius;
+    oublic LayerMask whatisGround;
+    
+    
+    void Start() //runs at the start of executable
+    {
+      rb = GetComponent<Rigidbody2d>();
+    }
+
+  private void FixedUpdate() //runs/checks scene update per frame
+  {
+    isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadois, whatisGrounded);
+    
+    moveInput = Input.GetAxisRaw("Horizontal");
+    rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
+    
+    if(facingRight == false && moveInput > 0)
+    {
+      Flip();
+    } else if(facingRight == true && moveInput < 0)
+    {
+      Flip():
+    } 
+  }
+
+  void Flip()
+  {
+    facingRight = ifacingRight;
+    Vector3 Scaler = transform.localScale;
+    Scaler.x *= 1;
+    trnsform.localScale = Scaler;
+  }
+
+}
